@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--mybatis全局配置文件-->
+
+<configuration>
+
+    <!--注册db文件-->
+    <properties resource="db.properties"/>
+
+    <!--指定接收结果的包-->
+    <typeAliases>
+        <package name="com.dwk.fly.bean"/>
+    </typeAliases>
+
+    <!--配置数据库环境-->
+    <environments default="development">
+        <!--可以配置多个，具体要使用哪个将子节点中的id写入父节点中的default-->
+        <environment id="development">
+            <!--指定mybatis所使用的事务管理器，支持两种：JDBC、MANAGED-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.user}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--注册映射文件-->
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"/>
+    </mappers>
+
+</configuration>
